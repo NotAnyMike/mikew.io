@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mikew.io/sitemap.xml
