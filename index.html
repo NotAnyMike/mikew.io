@@ -2684,6 +2684,33 @@ let i=0;
   addEventListener('resize',()=>{fit()});addEventListener('scroll',sync,{passive:true});document.addEventListener('visibilitychange',sync);sync();
 })();
 
+/* navigation — steps aside while editing */
+const sync=()=>{
+  const h=document.documentElement;
+  const p=h.scrollTop/(h.scrollHeight-h.clientHeight||1);
+  bar.style.width=(p*100)+'%';
+  let best=0,bd=1e9;
+  slides.forEach((s,k)=>{const d=Math.abs(s.getBoundingClientRect().top);if(d<bd){bd=d;best=k}});
+  i=best;
+};
+addEventListener('scroll',sync,{passive:true});
+const go=n=>{i=Math.max(0,Math.min(slides.length-1,n));slides[i].scrollIntoView({behavior:'smooth'})};
+
+/* section navigator */
+const SECTIONS=[["Start",0],["Services",3],["Transformation",4],["Work",9],["About",13],["Contact",15]];
+const nav=document.getElementById('nav');
+SECTIONS.forEach(([label,idx])=>{
+  const b=document.createElement('button');b.type='button';b.textContent=label;
+  b.addEventListener('click',()=>go(idx));nav.appendChild(b);
+});
+/* the About page lives in its own artifact */
+{const b=document.createElement('button');b.type='button';b.className='ext';b.textContent='About me ↗';
+ b.addEventListener('click',()=>window.open('https://claude.ai/artifact/22otZZBpQKgi5yHMGY81eW','_blank','noopener'));nav.appendChild(b);}
+const navSync=()=>{
+  let cur=0;SECTIONS.forEach(([,idx],k)=>{if(i>=idx)cur=k});
+  [...nav.children].forEach((b,k)=>b.classList.toggle('on',k===cur));
+};
+addEventListener('scroll',navSync,{passive:true});
 addEventListener('keydown',e=>{
   if(document.activeElement&&document.activeElement.isContentEditable)return;
   if(/^[1-6]$/.test(e.key)){e.preventDefault();go(SECTIONS[+e.key-1][1]);return}
