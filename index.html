@@ -571,7 +571,17 @@ ul.check.good li::before{color:var(--good)}
 #save{position:fixed;top:14px;right:16px;z-index:100;font-family:var(--sans);font-size:13px;font-weight:650;color:#fff;background:var(--accent);border:none;border-radius:20px;padding:8px 18px;cursor:pointer;letter-spacing:.01em;box-shadow:0 2px 8px rgba(47,91,216,.28)}
 #save:hover{background:#2449ad}
 #save.dirty::after{content:" ●";font-size:.8em}
-#nav{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:98;display:flex;gap:3px;background:rgba(251,250,248,.94);border:1px solid var(--rule);border-radius:999px;padding:5px 8px;backdrop-filter:blur(8px);box-shadow:0 2px 10px rgba(16,19,26,.08);max-width:calc(100vw - 24px);overflow-x:auto}
+#nav{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:98;display:flex;background:rgba(251,250,248,.94);border:1px solid var(--rule);border-radius:999px;padding:5px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 10px rgba(16,19,26,.08);max-width:calc(100vw - 24px);overflow:hidden;transition:background .25s,border-color .25s,box-shadow .25s}
+#nav .track{position:relative;display:flex;gap:3px;min-width:0;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;--fl:0px;--fr:0px;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 var(--fl),#000 calc(100% - var(--fr)),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 var(--fl),#000 calc(100% - var(--fr)),transparent 100%)}
+#nav .track::-webkit-scrollbar{display:none}
+#nav.fl .track{--fl:34px}
+#nav.fr .track{--fr:34px}
+#nav.dark{background:rgba(14,17,24,.72);border-color:rgba(255,255,255,.12);box-shadow:0 4px 20px rgba(0,0,0,.4)}
+#nav.dark button{color:rgba(232,230,225,.62)}
+#nav.dark button:hover{color:#fff;background:rgba(255,255,255,.08)}
+#nav.dark button.on{background:var(--accent);color:#fff}
+#nav.dark button.ext{color:#9db3ff;border-left-color:rgba(255,255,255,.14)}
+@media(max-width:600px){#nav{left:10px;right:10px;transform:none;max-width:none;bottom:max(10px,env(safe-area-inset-bottom));padding:4px}#nav button{font-size:12px;padding:7px 12px}}
 #nav button{border:none;background:transparent;font-family:var(--sans);font-size:11px;font-weight:650;color:var(--ink-3);padding:4px 11px;border-radius:999px;cursor:pointer;letter-spacing:.02em;transition:background .12s,color .12s;white-space:nowrap}
 #nav button:hover{color:var(--accent);background:var(--accent-soft)}
 #nav button.on{background:var(--accent);color:#fff}
@@ -581,7 +591,7 @@ ul.check.good li::before{color:var(--good)}
 /* phone: let slides grow instead of clipping, drop snap */
 @media(max-width:700px){
   html{scroll-snap-type:none}
-  .slide{height:auto;min-height:100vh;overflow:visible;padding:28px 16px 36px}
+  .slide{height:auto;min-height:100vh;overflow:visible;padding:28px 16px 84px}   /* bottom clears the fixed nav */
   .cards,.cards.c3,.cards.c2,.stats,.stats.c4{grid-template-columns:1fr}
   .steps.toc{grid-template-columns:1fr;grid-auto-flow:row;grid-template-rows:none}
   .gantt{grid-template-columns:minmax(90px,auto) repeat(12,1fr)}
@@ -2699,16 +2709,40 @@ const go=n=>{i=Math.max(0,Math.min(slides.length-1,n));slides[i].scrollIntoView(
 /* section navigator */
 const SECTIONS=[["Start",0],["Services",3],["Transformation",4],["Work",9],["About",13],["Contact",15]];
 const nav=document.getElementById('nav');
+const track=document.createElement('div');track.className='track';nav.appendChild(track);
 SECTIONS.forEach(([label,idx])=>{
   const b=document.createElement('button');b.type='button';b.textContent=label;
-  b.addEventListener('click',()=>go(idx));nav.appendChild(b);
+  b.addEventListener('click',()=>go(idx));track.appendChild(b);
 });
 /* the About page lives in its own artifact */
 {const b=document.createElement('button');b.type='button';b.className='ext';b.textContent='About me ↗';
- b.addEventListener('click',()=>window.open('https://claude.ai/artifact/22otZZBpQKgi5yHMGY81eW','_blank','noopener'));nav.appendChild(b);}
+ b.addEventListener('click',()=>window.open('https://claude.ai/artifact/22otZZBpQKgi5yHMGY81eW','_blank','noopener'));track.appendChild(b);}
+/* fade the track's edges only where it overflows */
+const navFade=()=>{
+  nav.classList.toggle('fl',track.scrollLeft>2);
+  nav.classList.toggle('fr',track.scrollLeft+track.clientWidth<track.scrollWidth-2);
+};
+track.addEventListener('scroll',navFade,{passive:true});
+addEventListener('resize',navFade);
+/* dark glass over dark slides */
+const darkBg=new WeakMap();
+const isDark=el=>{
+  if(!el)return false;
+  if(!darkBg.has(el)){
+    const m=getComputedStyle(el).backgroundColor.match(/[\d.]+/g)||[];
+    const [r,g,b,a=1]=m.map(Number);
+    darkBg.set(el,m.length>=3&&a>0.5&&(0.2126*r+0.7152*g+0.0722*b)<90);
+  }
+  return darkBg.get(el);
+};
+let navOn=null;
 const navSync=()=>{
   let cur=0;SECTIONS.forEach(([,idx],k)=>{if(i>=idx)cur=k});
-  [...nav.children].forEach((b,k)=>b.classList.toggle('on',k===cur));
+  [...track.children].forEach((b,k)=>b.classList.toggle('on',k===cur));
+  const on=track.children[cur];
+  if(on&&on!==navOn){navOn=on;track.scrollTo({left:on.offsetLeft-(track.clientWidth-on.offsetWidth)/2,behavior:'smooth'})}
+  nav.classList.toggle('dark',isDark(slides[i]));
+  navFade();
 };
 addEventListener('scroll',navSync,{passive:true});
 addEventListener('keydown',e=>{
