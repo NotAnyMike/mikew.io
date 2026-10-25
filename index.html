@@ -79,9 +79,10 @@ body{
   padding-top:.7em;border-top:1px solid var(--rule);
 }
 .foot .n{font-variant-numeric:tabular-nums;font-family:var(--mono)}
-.foot a.cv-btn{display:inline-block;margin-left:.8em;padding:.35em 1em;border-radius:999px;background:var(--ink);color:#fff;font-weight:650;letter-spacing:.02em;text-decoration:none}
-.end .foot a.cv-btn{background:#fff;color:var(--ink)}
-.foot a.cv-btn:hover{background:var(--accent);color:#fff;text-decoration:none}
+.foot a.cv-btn{display:inline-block;margin-left:.8em;padding:.3em .95em;border-radius:999px;border:1px solid var(--rule);color:var(--ink-2);font-weight:650;letter-spacing:.02em;text-decoration:none}
+.end .foot a.cv-btn{border-color:rgba(255,255,255,.18);color:rgba(232,230,225,.8)}
+.foot a.cv-btn:hover{color:var(--accent);background:var(--accent-soft);text-decoration:none}
+.end .foot a.cv-btn:hover{color:#fff;background:rgba(255,255,255,.08)}
 
 h1{font-size:var(--f-h1);line-height:.97;letter-spacing:-0.035em;font-weight:680;max-width:18ch}
 h2{font-size:var(--f-h2);line-height:1.04;letter-spacing:-0.028em;font-weight:660;max-width:24ch}
@@ -592,10 +593,10 @@ ul.check.good li::before{color:var(--good)}
 #nav .pins{display:flex;align-items:center;gap:3px;flex:none}   /* VFX and About stay in view while the sections scroll */
 #nav button.vfx,#nav.dark button.vfx{background:#ff8a3d;color:#14100c;margin-left:3px}
 #nav button.vfx:hover,#nav.dark button.vfx:hover{background:#ff7417;color:#14100c}
-#nav a.pdf{font-family:var(--sans);font-size:11px;font-weight:650;background:var(--ink);color:#fff;padding:4px 11px;border-radius:999px;letter-spacing:.02em;white-space:nowrap;text-decoration:none;margin-left:3px;transition:background .12s,color .12s}
-#nav a.pdf:hover{background:var(--accent);color:#fff;text-decoration:none}
-#nav.dark a.pdf{background:#fff;color:var(--ink)}
-#nav.dark a.pdf:hover{background:#dfe6ff;color:var(--ink)}
+#nav a.pdf{font-family:var(--sans);font-size:11px;font-weight:650;color:var(--ink-3);padding:4px 11px;border-radius:999px;letter-spacing:.02em;white-space:nowrap;text-decoration:none;transition:background .12s,color .12s}
+#nav a.pdf:hover{color:var(--accent);background:var(--accent-soft);text-decoration:none}
+#nav.dark a.pdf{color:rgba(232,230,225,.62)}
+#nav.dark a.pdf:hover{color:#fff;background:rgba(255,255,255,.08)}
 @media(max-width:600px){#nav a.pdf{font-size:12px;padding:7px 12px}}
 [contenteditable="true"]:focus{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
 
