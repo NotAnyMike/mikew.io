@@ -68,6 +68,13 @@ a:hover{text-decoration:underline;text-underline-offset:2px}
 /* Edinburgh */
 .crest{justify-self:center;width:min(100%,340px)}
 .crest img{width:100%;height:auto;display:block}
+.crest.brand{display:flex;flex-direction:column;align-items:center;gap:clamp(18px,2.4vw,36px);width:min(100%,300px)}
+.crest.brand img{width:80%}
+.kop.big{font-size:clamp(22px,2.4vw,36px)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.6vw,26px);margin-top:1.1em;max-width:44em}
+.stat{border-top:3px solid var(--accent);padding-top:.6em}
+.stat .v{font-size:clamp(24px,2.6vw,42px);font-weight:660;letter-spacing:-0.04em;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums;white-space:nowrap}
+.stat .k{font-size:clamp(11px,.9vw,14px);color:var(--ink-3);margin-top:.45em;line-height:1.35}
 .crest figcaption{font-family:var(--mono);font-size:clamp(10px,.8vw,12px);color:var(--ink-3);text-align:center;margin-top:.8em}
 ul.check{list-style:none;margin-top:.9em;display:flex;flex-direction:column;gap:.65em}
 ul.check li{padding-left:1.7em;position:relative;font-size:clamp(13px,1.12vw,18px);color:var(--ink-2);max-width:60ch;line-height:1.42}
@@ -117,6 +124,9 @@ ul.check.good li::before{color:var(--good)}
   .step .i{grid-column:1/-1;justify-self:start}
   .step .lg{align-items:flex-start;width:56px}
   .logo{height:50px}
+  .stats{gap:10px}
+  .stat .v{font-size:20px}
+  .crest.brand{width:min(70%,220px)}
 }
 @media print{
   html{scroll-snap-type:none}
@@ -158,7 +168,7 @@ ul.check.good li::before{color:var(--good)}
   <div class="body">
     <h2>How I got here</h2>
     <div class="steps">
-      <div class="step"><div class="i">2012–17</div><div class="lg"><img src="logos/unal.svg" alt="Universidad Nacional de Colombia"></div><div><div class="t">National University of Colombia: mathematics, systems engineering, economics</div><div class="d">Loved all three, graduated in economics, top 5 of the class. Six scholarships for academic performance, three research groups, one self-driving warehouse robot.</div></div></div>
+      <div class="step"><div class="i">2012–17</div><div class="lg"><img src="logos/unal.svg" alt="Universidad Nacional de Colombia"></div><div><div class="t">National University of Colombia: computer science, mathematics, economics, with merits</div><div class="d">Loved all three, graduated in economics, top 5 of the class. Six scholarships for academic performance, three research groups, one self-driving warehouse robot.</div></div></div>
       <div class="step"><div class="i">2018–19</div><div class="lg"><img src="logos/edinburgh.svg" alt="The University of Edinburgh"></div><div><div class="t">University of Edinburgh: MSc Artificial Intelligence, with merits</div><div class="d">On a Colfuturo national scholarship. Perception for the Formula Student driverless car, which won the UK autonomous-driving competition in 2019.</div></div></div>
       <div class="step"><div class="i">2019–24</div><div class="lg"><span class="kop" style="font-size:clamp(10px,.85vw,13px)">Kopernikus</span><img class="flat" src="logos/ford.svg" alt="Ford"></div><div><div class="t">Kopernikus Automotive, Berlin: ML engineer, then ML lead, then senior ML engineer</div><div class="d">Camera-only perception for autonomous vehicles. OEM pilots, the IAA 2021 demo, a live Ford plant. The company was acquired by Ford.</div></div></div>
       <div class="step"><div class="i">2024–26</div><div class="lg"><img class="flat" src="logos/sellerx.png" alt="SellerX"><img class="flat" src="logos/amazon.svg" alt="Amazon"></div><div><div class="t">SellerX, Berlin: Senior AI Architect → Head of AI &amp; Automation → Head of AI &amp; Engineering</div><div class="d">A unicorn at eighteen months, selling 100+ brands across 30+ Amazon and other marketplaces. Ran ML, data and platform behind €100M+ of revenue and put generative AI into everyday operations.</div></div></div>
@@ -168,9 +178,32 @@ ul.check.good li::before{color:var(--good)}
   <div class="foot"><span>About me · path</span><span class="n">02</span></div>
 </section>
 
-<!-- 03 · Edinburgh -->
+<!-- 03 · Bogotá -->
 <section class="slide">
-  <div class="eyebrow"><span><span class="tag">About me</span>Edinburgh</span><span>03 — 2018 → 2019</span></div>
+  <div class="eyebrow"><span><span class="tag">About me</span>Bogotá</span><span>03 — 2012 → 2017</span></div>
+  <div class="body">
+    <div class="split wide">
+      <div>
+        <h2>Bogotá: three degrees' worth of curiosity</h2>
+        <p class="lead" style="margin-top:.6em">Universidad Nacional de Colombia, the country's largest public university. Computer science to build, mathematics to prove, economics to ask whether the number moved.</p>
+        <ul class="check good">
+          <li><strong>Computer science, with merits</strong> (2012–14), with honours.</li>
+          <li><strong>Mathematics, with merits</strong> (2015–17), with honours.</li>
+          <li><strong>BA Economics, with merits</strong> (2014–17): the degree I finished, 5th of 75 in the 2017 class.</li>
+          <li><strong>Six scholarships for academic performance</strong>, from the engineering, science and economics faculties, and an honour enrolment in economics (2012).</li>
+          <li><strong>Assistant researcher in three groups:</strong> the Experimental Factory Laboratory (multi-agent coordination and perception for a self-driving warehouse vehicle), Algorithmic and Combinatorial Research, and Artificial Life.</li>
+          <li><strong>Second place, best research projects</strong>, Fenadeco (2017).</li>
+        </ul>
+      </div>
+      <figure class="crest"><img src="logos/unal.svg" alt="Universidad Nacional de Colombia"><figcaption>Universidad Nacional de Colombia · 2012–2017</figcaption></figure>
+    </div>
+  </div>
+  <div class="foot"><span>About me · Bogotá</span><span class="n">03</span></div>
+</section>
+
+<!-- 04 · Edinburgh -->
+<section class="slide">
+  <div class="eyebrow"><span><span class="tag">About me</span>Edinburgh</span><span>04 — 2018 → 2019</span></div>
   <div class="body">
     <div class="split wide">
       <div>
@@ -186,12 +219,108 @@ ul.check.good li::before{color:var(--good)}
       <figure class="crest"><img src="logos/edinburgh.svg" alt="The University of Edinburgh crest"><figcaption>The University of Edinburgh · MSc AI 2019</figcaption></figure>
     </div>
   </div>
-  <div class="foot"><span>About me · Edinburgh</span><span class="n">03</span></div>
+  <div class="foot"><span>About me · Edinburgh</span><span class="n">04</span></div>
 </section>
 
-<!-- 04 · Credentials & stack -->
+<!-- 05 · Kopernikus → Ford -->
 <section class="slide">
-  <div class="eyebrow"><span><span class="tag">About me</span>Credentials &amp; stack</span><span>04 — Reference</span></div>
+  <div class="eyebrow"><span><span class="tag">About me</span>Kopernikus Automotive → Ford</span><span>05 — 2019 → 2024</span></div>
+  <div class="body">
+    <div class="split wide">
+      <div>
+        <h2>Kopernikus: cars that drive themselves on cameras alone</h2>
+        <p class="lead" style="margin-top:.6em">Four and a half years in Berlin, from first model to a live Ford plant. No lidar, no driver: the cameras already on site, and my perception stack. Ford went on to acquire the company.</p>
+        <div class="stats">
+          <div class="stat"><div class="v">20 → 200</div><div class="k">frames per second, same hardware</div></div>
+          <div class="stat"><div class="v">100+</div><div class="k">live camera streams at once</div></div>
+          <div class="stat"><div class="v">mm</div><div class="k">accuracy without lidar</div></div>
+        </div>
+        <ul class="check good">
+          <li><strong>ML engineer (2019–20):</strong> self-supervised monocular depth, and Kalman and EKF state estimation that kept tracks through occlusion.</li>
+          <li><strong>ML lead (2020–21):</strong> ran the ML team and its roadmap, defined the operational design domain, and led pilots with Germany's largest carmakers, including production lines for popular models.</li>
+          <li><strong>IAA Munich 2021:</strong> my unknown-object safety function, shown alongside Mercedes-Benz, Volkswagen, BMW, Jaguar and Ford. <a href="https://notanymike.github.io/IAA/" target="_blank" rel="noopener">The demo ↗</a></li>
+          <li><strong>Senior ML engineer (2021–24):</strong> TensorRT, ONNX, Triton and DeepStream in production, on-site commissioning, and a car parking itself in a running Ford factory. <a href="https://notanymike.github.io/Ford/" target="_blank" rel="noopener">The Ford plant ↗</a></li>
+        </ul>
+      </div>
+      <figure class="crest brand"><span class="kop big">Kopernikus<span>·</span>Automotive</span><img src="logos/ford.svg" alt="Ford"><figcaption>Kopernikus Automotive, acquired by Ford · 2019–2024</figcaption></figure>
+    </div>
+  </div>
+  <div class="foot"><span>About me · Kopernikus and Ford</span><span class="n">05</span></div>
+</section>
+
+<!-- 06 · SellerX -->
+<section class="slide">
+  <div class="eyebrow"><span><span class="tag">About me</span>SellerX</span><span>06 — 2024 → 2026</span></div>
+  <div class="body">
+    <div class="split wide">
+      <div>
+        <h2>SellerX: AI under a unicorn that runs on numbers</h2>
+        <p class="lead" style="margin-top:.6em">Unicorn valuation eighteen months after founding. 100,000+ products on Amazon, eBay, Walmart and more, across four continents. Two steps up in two years: Senior AI Architect, Head of AI &amp; Automation, Head of AI &amp; Engineering.</p>
+        <div class="stats">
+          <div class="stat"><div class="v">€100M+</div><div class="k">yearly revenue on the systems my teams ran</div></div>
+          <div class="stat"><div class="v">−30 %</div><div class="k">forecast error, halved on the long tail</div></div>
+          <div class="stat"><div class="v">60 %</div><div class="k">of tickets on its topics resolved by agents</div></div>
+        </div>
+        <ul class="check good">
+          <li><strong>Head of AI &amp; Engineering:</strong> led the ML, data and platform teams; set direction, hiring and standards; ran pricing, listings, ads, inventory and finance systems as always-on services.</li>
+          <li><strong>Demand planning:</strong> 70–80 % automated, replacing a four-planner manual process, and €700K+ a year less in overstock fees.</li>
+          <li><strong>Customer service:</strong> agents answering 2k+ tickets a month at six-nines uptime.</li>
+          <li><strong>The AI platform:</strong> shared LLM access, retrieval, prompts and evaluation, and an internal hub used by about half the company.</li>
+        </ul>
+      </div>
+      <figure class="crest brand"><img src="logos/sellerx.png" alt="SellerX"><img src="logos/amazon.svg" alt="Amazon"><figcaption>SellerX, Berlin · 2024–2026</figcaption></figure>
+    </div>
+  </div>
+  <div class="foot"><span>About me · SellerX</span><span class="n">06</span></div>
+</section>
+
+<!-- 07 · Independent -->
+<section class="slide">
+  <div class="eyebrow"><span><span class="tag">About me</span>Independent</span><span>07 — 2026 →</span></div>
+  <div class="body">
+    <div class="split wide">
+      <div>
+        <h2>Independent: a Strategy AI consultant since February 2026</h2>
+        <p class="lead" style="margin-top:.6em">Berlin, working with teams in Germany, Colombia and the US. A small number of clients at a time, chosen carefully.</p>
+        <ul class="check good">
+          <li><strong>Television.AI, Frankfurt · AI lead.</strong> AI video editing for newsrooms: ingestion, transcription, knowledge extraction, and models that learn each channel's editorial voice. In use at several of Germany's leading public broadcasters.</li>
+          <li><strong>Traducciones 24/7, Bogotá · agentic architecture.</strong> An AI-native translation company built from the ground up: agents run intake, document extraction, pricing and quoting, quoting in seconds instead of hours.</li>
+          <li><strong>Audioscrape, San Francisco · consulting engineer.</strong> The ingestion pipeline behind a searchable index of 1M+ hours of podcasts.</li>
+          <li><strong>Seneca Evolution, Lorsch · technical strategy.</strong> A financial-controlling product with one clean data model and retrieval on top.</li>
+        </ul>
+        <p class="sub" style="margin-top:1em">More in the <a href="/#clients">profile deck</a>. References on request.</p>
+      </div>
+      <figure class="crest brand"><img src="logos/televisionai.jpg" alt="Television.AI"><figcaption>Television.AI · AI lead · 2026</figcaption></figure>
+    </div>
+  </div>
+  <div class="foot"><span>About me · independent</span><span class="n">07</span></div>
+</section>
+
+<!-- 08 · Traducciones 24/7 -->
+<section class="slide">
+  <div class="eyebrow"><span><span class="tag">About me</span>Traducciones 24/7</span><span>08 — An agent-run company</span></div>
+  <div class="body">
+    <div class="split wide">
+      <div>
+        <h2>Traducciones 24/7: an autonomous fleet of agents runs operations and sales</h2>
+        <p class="lead" style="margin-top:.6em">A certified-translation company in Bogotá, rebuilt as AI-native from the ground up. Agents do the operational and commercial work; people step in only where a sworn translator or a decision is needed.</p>
+        <ul class="check good">
+          <li><strong>Organised like a company:</strong> a director agent, with an engineering manager and a sales &amp; marketing manager, each running its own working agents and reporting up the chain.</li>
+          <li><strong>Operations:</strong> intake, document extraction, pricing and quoting, delivery tracking and customer support, quoting in seconds instead of hours.</li>
+          <li><strong>Commercial:</strong> marketing and sales agents run campaigns, B2B follow-up and attribution, so marketing spend is measured against the orders it brings in.</li>
+          <li><strong>Human in the loop where it counts:</strong> spend, outgoing messages and deploys stop and wait for an approval on the phone; sworn translations stay with sworn translators.</li>
+        </ul>
+        <p class="sub" style="margin-top:1em">The replay in the <a href="/#conKey">profile deck</a> shows this kind of setup over one real week.</p>
+      </div>
+      <figure class="crest brand"><img src="logos/t247.png" alt="Traducciones 24/7"><figcaption>Traducciones 24/7, Bogotá · agentic architecture · 2026</figcaption></figure>
+    </div>
+  </div>
+  <div class="foot"><span>About me · Traducciones 24/7</span><span class="n">08</span></div>
+</section>
+
+<!-- 09 · Credentials & stack -->
+<section class="slide">
+  <div class="eyebrow"><span><span class="tag">About me</span>Credentials &amp; stack</span><span>09 — Reference</span></div>
   <div class="body">
     <div class="split" style="align-items:start">
       <div>
@@ -212,12 +341,12 @@ ul.check.good li::before{color:var(--good)}
       </div>
     </div>
   </div>
-  <div class="foot"><span>About me · reference</span><span class="n">04</span></div>
+  <div class="foot"><span>About me · reference</span><span class="n">09</span></div>
 </section>
 
-<!-- 05 · Contact -->
+<!-- 10 · Contact -->
 <section class="slide end">
-  <div class="eyebrow"><span>Next step</span><span><b>05</b> — Contact</span></div>
+  <div class="eyebrow"><span>Next step</span><span><b>10</b> — Contact</span></div>
   <div class="body">
     <div class="rule-accent"></div>
     <h1>Tell me what you're building.</h1>
@@ -235,14 +364,14 @@ ul.check.good li::before{color:var(--good)}
       <li>You get a written note back: whether I can help, how, and what it would cost.</li>
     </ul>
   </div>
-  <div class="foot"><span>Mike Woodcock · Strategy AI consultant</span><span class="n">05</span></div>
+  <div class="foot"><span>Mike Woodcock · Strategy AI consultant</span><span class="n">10</span></div>
 </section>
 
 <script>
 const slides=[...document.querySelectorAll('.slide')];
 const bar=document.getElementById('bar'),nav=document.getElementById('nav');
 let i=0;
-const SECTIONS=[["Start",0],["Path",1],["Edinburgh",2],["Credentials",3],["Contact",4]];
+const SECTIONS=[["Start",0],["Path",1],["Bogotá",2],["Edinburgh",3],["Kopernikus",4],["SellerX",5],["Now",6],["T247",7],["Credentials",8],["Contact",9]];
 const deck=document.createElement('a');deck.href='/';deck.textContent='← Deck';nav.appendChild(deck);
 SECTIONS.forEach(([label,idx])=>{const b=document.createElement('button');b.type='button';b.textContent=label;b.addEventListener('click',()=>go(idx));nav.appendChild(b)});
 const btns=[...nav.querySelectorAll('button')];
@@ -255,13 +384,13 @@ const sync=()=>{
 };
 addEventListener('scroll',sync,{passive:true});
 addEventListener('keydown',e=>{
-  if(/^[1-5]$/.test(e.key)){e.preventDefault();go(SECTIONS[+e.key-1][1]);return}
+  if(/^[0-9]$/.test(e.key)){e.preventDefault();go(SECTIONS[(+e.key+9)%10][1]);return}
   if(['ArrowDown','ArrowRight',' ','PageDown'].includes(e.key)){e.preventDefault();go(i+1)}
   if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(i-1)}
 });
 /* entrance animations, armed when a slide is a third visible */
 (function(){
-  const groups=['.body>h1','.body>h2','.body>.lead','.body>.sub','.body>.rule-accent','.logos>.logo','.steps>.step','ul.check>li','.split>div>h2','.split>div>p','.crow','.meta>div','.crest'];
+  const groups=['.body>h1','.body>h2','.body>.lead','.body>.sub','.body>.rule-accent','.logos>.logo','.steps>.step','ul.check>li','.split>div>h2','.split>div>p','.crow','.meta>div','.crest','.stats>.stat'];
   slides.forEach(sl=>{let k=0;groups.forEach(g=>sl.querySelectorAll(g).forEach(el=>{if(!el.classList.contains('anim')){el.classList.add('anim');el.style.setProperty('--i',k++)}}))});
   const arm=sl=>sl.classList.add('in');
   const vis=()=>{const h=innerHeight;slides.forEach(sl=>{const r=sl.getBoundingClientRect();if(Math.min(r.bottom,h)-Math.max(r.top,0)>Math.min(r.height,h)*.3)arm(sl)})};
